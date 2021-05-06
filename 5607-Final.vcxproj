@@ -155,12 +155,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DisplayManager.cpp" />
     <ClCompile Include="glad\glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="RawModel.cpp" />
+    <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DisplayManager.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glad\khrplatform.h" />
+    <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="RawModel.h" />
+    <ClInclude Include="Renderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
