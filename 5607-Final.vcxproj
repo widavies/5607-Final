@@ -161,6 +161,8 @@
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="StaticShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisplayManager.h" />
@@ -169,6 +171,14 @@
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="StaticShader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="fragmentShader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertexShader.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

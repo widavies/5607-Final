@@ -19,6 +19,7 @@
 #include "DisplayManager.h"
 #include "ModelLoader.h"
 #include "Renderer.h"
+#include "StaticShader.h"
 using namespace std;
 
 void keySpace(bool up) {
@@ -26,12 +27,14 @@ void keySpace(bool up) {
 }
 
 int main(int argc, char* argv[]) {
-  DisplayManager display("Project 4", 1600, 900, false, false);
+  DisplayManager dm("Project 4", 1600, 900, false, false);
   ModelLoader modelLoader;
-  Renderer renderer;
+  Renderer renderer(dm);
+
+  StaticShader * shaders = new StaticShader();
 
   // Add key listeners here
-  display.AddKeyListener(SDLK_SPACE, keySpace);
+  dm.AddKeyListener(SDLK_SPACE, keySpace);
 
   float vertices[] = {
       -0.5f, 0.5f, 0.f,//v0
@@ -47,15 +50,20 @@ int main(int argc, char* argv[]) {
 
   RawModel square = modelLoader.loadRaw(vertices, sizeof(vertices) / sizeof(float), indices, sizeof(indices) / sizeof(int));
 
-  while(display.Update()) {
+  while(dm.Update()) {
     renderer.prepare();
+
+    shaders->start();
 
     renderer.render(square);
 
-    display.Swap();
+    shaders->stop();
+
+    renderer.flush();
   }
 
   modelLoader.close();
+  delete shaders;
 
   return 0;
 }
