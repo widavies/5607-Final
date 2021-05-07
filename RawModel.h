@@ -7,6 +7,10 @@
 class RawModel {
 
 public:
+  RawModel() {
+    _id = 0;
+    _vertexCount = 0;
+  }
   RawModel(GLuint id, int vertexCount) : _id(id), _vertexCount(vertexCount) {}
 
   int getVertexCount() {

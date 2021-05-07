@@ -1,17 +1,6 @@
-#include "Renderer.h"
-#include "RawModel.h"
+#include "EntityRenderer.h"
 
-void Renderer::prepare() {
-  glEnable(GL_DEPTH_TEST);
-  glClearColor(1.f, 1.f, 1.f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void Renderer::flush() {
-  _dm->Swap();
-}
-
-void Renderer::render(std::map<TexturedModel*, std::vector<Entity*>>& entities) {
+void EntityRenderer::render(std::map<TexturedModel*, std::vector<Entity*>>& entities) {
 
   for(std::map <TexturedModel*, std::vector<Entity*>>::iterator it = entities.begin(); it != entities.end(); ++it) {
     TexturedModel* model = it->first;
@@ -31,7 +20,7 @@ void Renderer::render(std::map<TexturedModel*, std::vector<Entity*>>& entities) 
 }
 
 
-void Renderer::prepareTextureModel(TexturedModel& model) {
+void EntityRenderer::prepareTextureModel(TexturedModel& model) {
   RawModel& rawModel = model.getModel();
 
   glBindVertexArray(rawModel.getVaoId());
@@ -47,7 +36,7 @@ void Renderer::prepareTextureModel(TexturedModel& model) {
 
 }
 
-void Renderer::unbindTextureModel() {
+void EntityRenderer::unbindTextureModel() {
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
   glDisableVertexAttribArray(2);
@@ -55,7 +44,7 @@ void Renderer::unbindTextureModel() {
   glBindVertexArray(0);
 }
 
-void Renderer::prepareInstance(Entity& entity) {
+void EntityRenderer::prepareInstance(Entity& entity) {
   glm::mat4 transformMat = entity.getTransformMat();
 
   _shader.setTransformMat(transformMat);

@@ -43,8 +43,8 @@ public:
   }
 
 private:
-  glm::vec3 _position = glm::vec3(0.f, 0.f, 0.f);
-  float _pitch = 0.f, _yaw = 0.f, _roll = 0.f;
+  glm::vec3 _position = glm::vec3(0.f, 15.f, 0.f);
+  float _pitch = 1.5708f, _yaw = 0.f, _roll = 0.f;
 
 };
 

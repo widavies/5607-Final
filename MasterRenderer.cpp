@@ -2,15 +2,23 @@
 
 void MasterRenderer::render(Light& sun, Camera& camera) {
 
-  _renderer->prepare();
-  _shader->start();
-  _shader->setLight(sun);
-  _shader->setViewMat(camera);
-  _renderer->render(_entities);
-  _shader->stop();
+  prepare();
+  //_entityShader->start();
+  //_entityShader->setLight(sun);
+  //_entityShader->setViewMat(camera);
+  //_entityRenderer->render(_entities);
+  //_entityShader->stop();
+
+  _terrainShader->start();
+  _terrainShader->setLight(sun);
+  _terrainShader->setViewMat(camera);
+  _terrainRenderer->render(_terrains);
+  _terrainShader->stop();
+
+  _terrains.clear();
   _entities.clear();
 
-  _renderer->flush();
+  _dm.Swap();
 }
 
 void MasterRenderer::queueEntity(Entity& entity) {
@@ -27,4 +35,16 @@ void MasterRenderer::queueEntity(Entity& entity) {
     _entities.insert(std::pair<TexturedModel*, std::vector<Entity*>>(model, batch));
   }
 
+}
+
+void MasterRenderer::queueTerrain(Terrain& terrain) {
+
+  _terrains.push_back(&terrain);
+
+}
+
+void MasterRenderer::prepare() {
+  glEnable(GL_DEPTH_TEST);
+  glClearColor(0.f, 0.f, 0.f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
