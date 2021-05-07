@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 
-ShaderProgram::ShaderProgram(std::string vertexShaderPath, std::string fragmentShaderPath) {
+ShaderProgram::ShaderProgram(std::string vertexShaderPath, std::string fragmentShaderPath, std::string* attrs, int attrCount) {
 
   _vertexShaderId = loadShader(vertexShaderPath, GL_VERTEX_SHADER);
   _fragmentShaderId = loadShader(fragmentShaderPath, GL_FRAGMENT_SHADER);
@@ -14,6 +14,10 @@ ShaderProgram::ShaderProgram(std::string vertexShaderPath, std::string fragmentS
 
   // The out color in the fragment shader that will be used for each pixel
   //glBindFragDataLocation(_programId, 0, "outColor");
+
+  for(int i = 0; i < attrCount; i++) {
+    bindAttribute(i, attrs[i]);
+  }
 
   glLinkProgram(_programId);
   glValidateProgram(_programId);

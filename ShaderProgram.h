@@ -10,19 +10,17 @@ class ShaderProgram {
 
 public:
   // Loads and compiles the shader
-  ShaderProgram(std::string vertexShaderPath, std::string fragmentShaderPath);
+  ShaderProgram(std::string vertexShaderPath, std::string fragmentShaderPath, std::string * attrs, int attrCount);
   ~ShaderProgram();
 
   void start();
 
   void stop();
 
-protected:
-
-  virtual void bindAttributes() = 0;
-  void bindAttribute(int attribute, std::string name);
 
 private:
+  void bindAttribute(int attribute, std::string name);
+
   static GLuint loadShader(std::string path, int type);
 
   GLuint _programId;

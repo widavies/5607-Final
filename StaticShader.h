@@ -7,10 +7,10 @@ class StaticShader : public ShaderProgram {
 
 public:
   StaticShader() 
-    : ShaderProgram("vertexShader.txt", "fragmentShader.txt") {}
-
-protected:
-  void bindAttributes();
-
+    : ShaderProgram("vertexShader.txt", "fragmentShader.txt", 
+      new std::string[]{"position", "textureCoords"}, 2) {
+    
+    
+  }
 };
 
