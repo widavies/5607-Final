@@ -27,6 +27,8 @@ void Renderer::render(Entity& entity, StaticShader& shader) {
   glm::mat4 transformMat = entity.getTransformMat();
 
   shader.setTransformMat(transformMat);
+  ModelTexture texture = entity.getTexture();
+  shader.setShine(texture.getShineDamper(), texture.getReflectivity());
 
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, entity.getTexture().getTextureId());

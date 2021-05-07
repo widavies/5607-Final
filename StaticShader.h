@@ -19,6 +19,8 @@ public:
     _locViewMat = getUniformLocation("viewMatrix");
     _locLightPosition = getUniformLocation("lightPosition");
     _locLightColor = getUniformLocation("lightColor");
+    _locShineDamper = getUniformLocation("shineDamper");
+    _locReflectivity = getUniformLocation("reflectivity");
   }
   void setTransformMat(glm::mat4 transform) {
     setUniformMat4(_locTransformMat, transform);
@@ -33,12 +35,18 @@ public:
     setUniformVec3(_locLightPosition, light.getPosition());
     setUniformVec3(_locLightColor, light.getColor());
   }
+  void setShine(float damper, float reflectivity) {
+    setUniformFloat(_locShineDamper, damper);
+    setUniformFloat(_locReflectivity, reflectivity);
+  }
 private:
   GLuint _locTransformMat;
   GLuint _locProjectionMat;
   GLuint _locViewMat;
   GLuint _locLightPosition;
   GLuint _locLightColor;
+  GLuint _locShineDamper;
+  GLuint _locReflectivity;
 
 };
 

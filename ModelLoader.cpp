@@ -16,7 +16,7 @@ RawModel ModelLoader::loadRaw(float* positions, int positionsSize, int * indices
 }
 
 // https://learnopengl.com/Getting-started/Textures
-ModelTexture ModelLoader::loadTexture(std::string path) {
+ModelTexture ModelLoader::loadTexture(std::string path, float shineDamper, float reflectivity) {
   GLuint id;
   glGenTextures(1, &id);
   glBindTexture(GL_TEXTURE_2D, id);
@@ -39,7 +39,7 @@ ModelTexture ModelLoader::loadTexture(std::string path) {
 
   _textures.push_back(id);
 
-  return ModelTexture(id);
+  return ModelTexture(id, shineDamper, reflectivity);
 }
 
 void ModelLoader::close() {

@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
   dm.AddKeyListener(SDLK_a, keyA);
 
   RawModel square = OBJLoader::loadOBJ("models/stall.obj", modelLoader);
-  ModelTexture texture = modelLoader.loadTexture("models/stallTexture.jpg");
+  ModelTexture texture = modelLoader.loadTexture("models/stallTexture.jpg", 10.f, 1.f);
 
   TexturedModel model(square, texture);
    

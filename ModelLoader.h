@@ -11,7 +11,7 @@ public:
   // Loads a model from raw vertex positions.
   RawModel loadRaw(float* positions, int positionsSize, int* indices, int indicesSize, float* textureCoords, int texturesSize, float* normals, int normalsSize);
 
-  ModelTexture loadTexture(std::string path);
+  ModelTexture loadTexture(std::string path, float shineDamper = 1.f, float reflectivity = 0.f);
 
   void close();
 
