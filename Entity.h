@@ -6,7 +6,7 @@
 
 class Entity {
 public:
-  Entity(TexturedModel model, float x, float y, float z) : _model(model) {
+  Entity(TexturedModel* model, float x, float y, float z) : _model(model) {
     _position = glm::vec3(x, y, z);
     _rx = _ry = _rz = 0.f;
     _scale = glm::vec3(1.f, 1.f, 1.f);
@@ -34,16 +34,20 @@ public:
     _rz += rz;
   }
 
-  ModelTexture& getTexture() {
-    return _model.getTexture();
+  TexturedModel* getModel() {
+    return _model;
   }
 
-  RawModel& getModel() {
-    return _model.getModel();
+  ModelTexture& getTexture() {
+    return _model->getTexture();
+  }
+
+  RawModel& getRawModel() {
+    return _model->getModel();
   }
 
 private:
-  TexturedModel _model;
+  TexturedModel* _model;
   glm::vec3 _position;
   float _rx, _ry, _rz;
   glm::vec3 _scale;
