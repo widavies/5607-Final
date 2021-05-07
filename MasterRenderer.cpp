@@ -3,11 +3,11 @@
 void MasterRenderer::render(Light& sun, Camera& camera) {
 
   prepare();
-  //_entityShader->start();
-  //_entityShader->setLight(sun);
-  //_entityShader->setViewMat(camera);
-  //_entityRenderer->render(_entities);
-  //_entityShader->stop();
+  _entityShader->start();
+  _entityShader->setLight(sun);
+  _entityShader->setViewMat(camera);
+  _entityRenderer->render(_entities);
+  _entityShader->stop();
 
   _terrainShader->start();
   _terrainShader->setLight(sun);
