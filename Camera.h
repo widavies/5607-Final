@@ -1,7 +1,11 @@
 #pragma once
+
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include "DisplayManager.h"
+
+#include <cmath>
 
 class Camera {
 public:
@@ -9,6 +13,7 @@ public:
     _position.x += dx;
     _position.y += dy;
     _position.z += dz;
+
   }
 
   glm::vec3 getPosition() {
@@ -27,7 +32,39 @@ public:
     return _roll;
   }
 
+ /* float toRadians(double angle_in_degrees) {
+      return angle_in_degrees * (3.1415 / 180.0);
+  }*/
 
+  void calculatePitch(int yDelta) {
+      _pitch -= yDelta * sensitivity;
+  }
+
+  void calculateAngleAroundPlayer(int xDelta) {
+      angleAroundPlayer -= xDelta * sensitivity;
+
+  }
+
+  float calculateHorizontalDistance() {
+      return (float)(distanceFromPlayer * cos(_pitch));
+  }
+
+  float calculateVerticalDistance() {
+      return (float)(distanceFromPlayer * sin(_pitch));
+  }
+
+
+  void calculateCameraPosition(float horizDistance, float verticDistance, float x_pos, float y_pos, float z_pos, float y_rot) {
+    _position.y = y_pos + verticDistance;
+
+    float theta = y_rot + angleAroundPlayer;
+    float offsetX = horizDistance * sin(theta);
+    float offsetZ = horizDistance * cos(theta);
+    _position.x = x_pos + offsetX; 
+    _position.z = z_pos - offsetZ;
+
+    _yaw = (3.1415 - y_rot + angleAroundPlayer);
+  }
   glm::mat4 getViewMat() {
     glm::mat4 view(1.f);
 
@@ -45,6 +82,8 @@ public:
 private:
   glm::vec3 _position = glm::vec3(0.f, 0.f, 0.f);
   float _pitch = 0.f, _yaw = 0.f, _roll = 0.f;
-
+  float angleAroundPlayer = 0;
+  float distanceFromPlayer = 15;
+  float sensitivity = .02;
 };
 

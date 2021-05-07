@@ -28,6 +28,7 @@ public:
 
   ~DisplayManager();
   float aspect;
+  int mouseXDelta = 0, mouseYDelta = 0;
 private:
   SDL_Window* _window;
   SDL_GLContext _context;
