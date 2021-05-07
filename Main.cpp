@@ -34,8 +34,8 @@ void keyA(bool up) {
 int main(int argc, char* argv[]) {
   DisplayManager dm("Project 4", 1600, 900, false, false);
   ModelLoader modelLoader;
-  
-  StaticShader * shaders = new StaticShader();
+
+  StaticShader* shaders = new StaticShader();
   Renderer renderer(dm, *shaders);
 
   Camera camera;
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     shaders->setViewMat(camera);
 
     renderer.render(entity, *shaders);
-    
+
     shaders->stop();
 
     renderer.flush();
