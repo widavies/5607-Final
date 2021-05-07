@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
 
   TexturedModel model(square, texture);
 
-  Entity entity(model, 0.f, 0.f, -15.f);
+  Entity entity(model, 0.f, 0.f, 15.f);
   entity.rotate(0, 3.1415f, 0.0f);
 
   float pi = 3.1415;

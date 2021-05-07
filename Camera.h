@@ -51,10 +51,10 @@ public:
       float theta = y_rot + angleAroundPlayer;
       float offsetX = horizDistance * sin(theta);
       float offsetZ = horizDistance * cos(theta);
-      _position.x = x_pos + offsetX;
+      _position.x = x_pos - offsetX;
       _position.z = z_pos - offsetZ;
 
-      _yaw = (3.1415 - y_rot + angleAroundPlayer);
+      _yaw = (3.1415 - (y_rot + angleAroundPlayer));
   }
 
   glm::mat4 getViewMat() {
