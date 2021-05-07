@@ -18,6 +18,7 @@ void OBJLoader::parseFaceVertex(std::string str, int* vals) {
     str.erase(0, pos + delimiter.length());
     index++;
   }
+  vals[index] = std::stoi(str);
 }
 
 void OBJLoader::parseFace(int* vals, std::vector<int>& indices, std::vector<glm::vec2>& textures,
@@ -28,10 +29,10 @@ void OBJLoader::parseFace(int* vals, std::vector<int>& indices, std::vector<glm:
   glm::vec2 currentTex = textures[vals[1] - 1];
   _textures[currentVertexPointer * 2] = currentTex.x;
   _textures[currentVertexPointer * 2 + 1] = 1 - currentTex.y;
-  //glm::vec3 currentNorm = normals[vals[2] - 1];
-  //_normals[currentVertexPointer * 3] = currentNorm.x;
-  //_normals[currentVertexPointer * 3 + 1] = currentNorm.y;
-  //_normals[currentVertexPointer * 3 + 2] = currentNorm.z;
+  glm::vec3 currentNorm = normals[vals[2] - 1];
+  _normals[currentVertexPointer * 3] = currentNorm.x;
+  _normals[currentVertexPointer * 3 + 1] = currentNorm.y;
+  _normals[currentVertexPointer * 3 + 2] = currentNorm.z;
 
 }
 
@@ -88,13 +89,10 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
 
   std::string token;
 
-  while(file >> op) {
-    if(op != "f") continue;
-
+  while(true) {
     int vals[3];
 
     file >> token;
-
     parseFaceVertex(token, vals);
     parseFace(vals, indices, textures, normals, _textures, _normals);
 
@@ -105,6 +103,10 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
     file >> token;
     parseFaceVertex(token, vals);
     parseFace(vals, indices, textures, normals, _textures, _normals);
+
+    if(!(file >> op)) {
+      break;
+    }
   }
 
   _vertices = new float[vertices.size() * 3];

@@ -159,6 +159,7 @@
     <ClCompile Include="DisplayManager.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="glad\glad.c" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glad\khrplatform.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="OBJLoader.h" />

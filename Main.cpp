@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
   ModelTexture texture = modelLoader.loadTexture("models/stallTexture.jpg");
 
   TexturedModel model(square, texture);
-
+   
   Entity entity(model, 0.f, 0.f, -15.f);
 
   while(dm.Update()) {
