@@ -5,6 +5,8 @@
 #include "glad/glad.h" 
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 class ShaderProgram {
 
@@ -17,6 +19,26 @@ public:
 
   void stop();
 
+protected:
+  int getUniformLocation(std::string name) {
+    return glGetUniformLocation(_programId, name.c_str());
+  }
+
+  void setUniformFloat(GLuint location, float value) {
+    glUniform1f(location, value);
+  }
+
+  void setUniformVec3(GLuint location, glm::vec3 value) {
+    glUniform3f(location, value.x, value.y, value.z);
+  }
+
+  void setUniformBool(GLuint location, bool value) {
+    glUniform1f(location, value ? 1 : 0);
+  }
+
+  void setUniformMat4(GLuint location, glm::mat4 value) {
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+  }
 
 private:
   void bindAttribute(int attribute, std::string name);

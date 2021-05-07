@@ -31,9 +31,11 @@ void keySpace(bool up) {
 int main(int argc, char* argv[]) {
   DisplayManager dm("Project 4", 1600, 900, false, false);
   ModelLoader modelLoader;
-  Renderer renderer(dm);
-
+  
   StaticShader * shaders = new StaticShader();
+  Renderer renderer(dm, *shaders);
+
+  Camera camera;
 
   // Add key listeners here
   dm.AddKeyListener(SDLK_SPACE, keySpace);
@@ -61,12 +63,20 @@ int main(int argc, char* argv[]) {
   ModelTexture texture = modelLoader.loadTexture("textures/container.jpg");
   TexturedModel model(square, texture);
 
+  Entity entity(model, 0.f, 0.f, -2.f);
+
   while(dm.Update()) {
+    //entity.translate(0.f, 0.f, -0.002f);
+    // 
+    //entity.rotate(0.f, 0.002f, 0.f);
+    camera.move(0.002f);
+
     renderer.prepare();
 
     shaders->start();
+    shaders->setViewMat(camera);
 
-    renderer.render(model);
+    renderer.render(entity, *shaders);
 
     shaders->stop();
 

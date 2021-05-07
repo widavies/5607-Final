@@ -37,12 +37,21 @@
     <Filter Include="Resource Files\textures">
       <UniqueIdentifier>{e61e3081-61e9-4d8c-b0ed-0b71dfc0769a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\libraries">
+      <UniqueIdentifier>{2570bd48-cb61-4125-ae43-58a53d7997dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libraries">
+      <UniqueIdentifier>{21e3edd8-b06d-4dd5-9634-c5983bd76be1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities">
+      <UniqueIdentifier>{40a9ce09-b802-49a9-938f-c0c14f7d7185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities">
+      <UniqueIdentifier>{03d4d2d7-a58b-4234-ba0e-db4ee824fea6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RawModel.cpp">
@@ -69,14 +78,17 @@
     <ClCompile Include="ModelTexture.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
+    <ClCompile Include="glad\glad.c">
+      <Filter>Source Files\libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="glad\glad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glad\khrplatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RawModel.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
@@ -95,14 +107,26 @@
     <ClInclude Include="StaticShader.h">
       <Filter>Header Files\shaders</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TexturedModel.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
     <ClInclude Include="ModelTexture.h">
       <Filter>Header Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files\libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\khrplatform.h">
+      <Filter>Header Files\libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\glad.h">
+      <Filter>Header Files\libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
