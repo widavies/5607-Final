@@ -20,6 +20,8 @@
 #include "ModelLoader.h"
 #include "Renderer.h"
 #include "StaticShader.h"
+#include "ModelTexture.h"
+#include "TexturedModel.h"
 using namespace std;
 
 void keySpace(bool up) {
@@ -48,14 +50,23 @@ int main(int argc, char* argv[]) {
       3,1,2//bottom right triangle (v3, v1, v2)
   };
 
-  RawModel square = modelLoader.loadRaw(vertices, sizeof(vertices) / sizeof(float), indices, sizeof(indices) / sizeof(int));
+  float textureCoords[] = {
+    0, 0, // v0
+    0, 1, // v1
+    1, 1, // v2
+    1, 0 // v3
+  };
+
+  RawModel square = modelLoader.loadRaw(vertices, sizeof(vertices) / sizeof(float), indices, sizeof(indices) / sizeof(int), textureCoords, sizeof(textureCoords) / sizeof(float));
+  ModelTexture texture = modelLoader.loadTexture("textures/container.jpg");
+  TexturedModel model(square, texture);
 
   while(dm.Update()) {
     renderer.prepare();
 
     shaders->start();
 
-    renderer.render(square);
+    renderer.render(model);
 
     shaders->stop();
 

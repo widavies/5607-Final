@@ -18,6 +18,21 @@ void Renderer::render(RawModel& model) {
   glBindVertexArray(0);
 }
 
+void Renderer::render(TexturedModel& model) {
+  RawModel rawModel = model.getModel();
+
+  glBindVertexArray(rawModel.getVaoId());
+  glEnableVertexAttribArray(0);
+  glEnableVertexAttribArray(1);
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, model.getTexture().getTextureId());
+  //glDrawArrays(GL_TRIANGLES, 0, model.getVertexCount());
+  glDrawElements(GL_TRIANGLES, rawModel.getVertexCount(), GL_UNSIGNED_INT, 0);
+  glDisableVertexAttribArray(0);
+  glDisableVertexAttribArray(1);
+  glBindVertexArray(0);
+}
+
 void Renderer::flush() {
   _dm->Swap();
 }

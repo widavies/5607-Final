@@ -1,6 +1,7 @@
 #pragma once
 #include "RawModel.h"
 #include "DisplayManager.h"
+#include "TexturedModel.h"
 
 // Basic utility rendering functions
 class Renderer {
@@ -14,6 +15,8 @@ public:
 
   // Renders a RawModel to the buffer
   void render(RawModel& model);
+
+  void render(TexturedModel& model);
 
   // Flushes all rendering buffers to the screen
   void flush();
