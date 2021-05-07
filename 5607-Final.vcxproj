@@ -162,6 +162,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
+    <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="glad\khrplatform.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="ModelTexture.h" />
+    <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ShaderProgram.h" />

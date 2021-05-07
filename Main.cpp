@@ -22,10 +22,13 @@
 #include "StaticShader.h"
 #include "ModelTexture.h"
 #include "TexturedModel.h"
+#include "OBJLoader.h"
+
 using namespace std;
 
-void keySpace(bool up) {
+void keyA(bool up) {
   cout << "Space pressed" << endl;
+
 }
 
 int main(int argc, char* argv[]) {
@@ -38,38 +41,20 @@ int main(int argc, char* argv[]) {
   Camera camera;
 
   // Add key listeners here
-  dm.AddKeyListener(SDLK_SPACE, keySpace);
+  dm.AddKeyListener(SDLK_a, keyA);
 
-  float vertices[] = {
-      -0.5f, 0.5f, 0.f,//v0
-      -0.5f, -0.5f, 0.f,//v1
-      0.5f, -0.5f, 0.f,//v2
-      0.5f, 0.5f, 0.f,//v3
-  };
+  RawModel square = OBJLoader::loadOBJ("models/stall.obj", modelLoader);
+  ModelTexture texture = modelLoader.loadTexture("models/stallTexture.jpg");
 
-  int indices[] = {
-      0,1,3,//top left triangle (v0, v1, v3)
-      3,1,2//bottom right triangle (v3, v1, v2)
-  };
-
-  float textureCoords[] = {
-    0, 0, // v0
-    0, 1, // v1
-    1, 1, // v2
-    1, 0 // v3
-  };
-
-  RawModel square = modelLoader.loadRaw(vertices, sizeof(vertices) / sizeof(float), indices, sizeof(indices) / sizeof(int), textureCoords, sizeof(textureCoords) / sizeof(float));
-  ModelTexture texture = modelLoader.loadTexture("textures/container.jpg");
   TexturedModel model(square, texture);
 
-  Entity entity(model, 0.f, 0.f, -2.f);
+  Entity entity(model, 0.f, 0.f, -15.f);
 
   while(dm.Update()) {
     //entity.translate(0.f, 0.f, -0.002f);
     // 
-    //entity.rotate(0.f, 0.002f, 0.f);
-    camera.move(0.002f);
+    entity.rotate(0.f, 0.02f, 0.f);
+    //camera.move(0.0f, 0.f, 0.002f);
 
     renderer.prepare();
 
@@ -77,7 +62,7 @@ int main(int argc, char* argv[]) {
     shaders->setViewMat(camera);
 
     renderer.render(entity, *shaders);
-
+    
     shaders->stop();
 
     renderer.flush();

@@ -14,11 +14,11 @@ public:
 
   glm::mat4 getTransformMat() {
     glm::mat4 mat(1.f);
-    mat = glm::scale(mat, _scale);
-    mat = glm::rotate(mat, _rx, glm::vec3(1, 0, 0));
-    mat = glm::rotate(mat, _ry, glm::vec3(0, 1, 0));
-    mat = glm::rotate(mat, _rz, glm::vec3(0, 0, 1));
     mat = glm::translate(mat, _position);
+    mat = glm::scale(mat, _scale);
+    mat = glm::rotate(mat, _rx, glm::vec3(1.f, 0.f, 0.f));
+    mat = glm::rotate(mat, _ry, glm::vec3(0.f, 1.f, 0.f));
+    mat = glm::rotate(mat, _rz, glm::vec3(0.f, 0.f, 1.f));
     return mat;
   }
 
