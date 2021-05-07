@@ -9,7 +9,7 @@ class ModelLoader {
 public:
 
   // Loads a model from raw vertex positions.
-  RawModel loadRaw(float* positions, int positionsSize, int* indices, int indicesSize, float* textureCoords, int texturesSize);
+  RawModel loadRaw(float* positions, int positionsSize, int* indices, int indicesSize, float* textureCoords, int texturesSize, float* normals, int normalsSize);
 
   ModelTexture loadTexture(std::string path);
 

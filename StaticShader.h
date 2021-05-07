@@ -12,7 +12,7 @@ class StaticShader : public ShaderProgram {
 public:
   StaticShader() 
     : ShaderProgram("vertexShader.txt", "fragmentShader.txt", 
-      new std::string[]{"position", "textureCoords"}, 2) {
+      new std::string[]{"position", "textureCoords", "normal"}, 3) {
 
     _locTransformMat = getUniformLocation("transformationMatrix");
     _locProjectionMat = getUniformLocation("projectionMatrix");

@@ -124,5 +124,5 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
     _indices[i] = indices[i];
   }
 
-  return loader.loadRaw(_vertices, vertices.size() * 3, _indices, indices.size(), _textures, vertices.size() * 2);
+  return loader.loadRaw(_vertices, vertices.size() * 3, _indices, indices.size(), _textures, vertices.size() * 2, _normals, vertices.size() * 3);
 }

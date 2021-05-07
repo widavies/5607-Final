@@ -49,6 +49,7 @@ int main(int argc, char* argv[]) {
   TexturedModel model(square, texture);
    
   Entity entity(model, 0.f, 0.f, -15.f);
+  Light light(glm::vec3(0.f, 0.f, -20.f), glm::vec3(1.f, 1.f, 1.f));
 
   while(dm.Update()) {
     //entity.translate(0.f, 0.f, -0.002f);
@@ -59,6 +60,7 @@ int main(int argc, char* argv[]) {
     renderer.prepare();
 
     shaders->start();
+    shaders->setLight(light);
     shaders->setViewMat(camera);
 
     renderer.render(entity, *shaders);
