@@ -4,6 +4,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+// An instance of a TexturedModel, it shares the underlying textured model.
+// An Entity purely adds positioning/scale/rotation information
 class Entity {
 public:
   Entity(TexturedModel* model, float x, float y, float z) : _model(model) {
@@ -12,6 +14,7 @@ public:
     _scale = glm::vec3(1.f, 1.f, 1.f);
   }
 
+  // Gets the model transformation (from model to world coords)
   glm::mat4 getTransformMat() {
     glm::mat4 mat(1.f);
     mat = glm::translate(mat, _position);

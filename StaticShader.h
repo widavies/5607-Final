@@ -7,6 +7,9 @@
 #include "Light.h"
 
 // https://stackoverflow.com/a/1372858/4779937
+// An implementation of ShaderProgram. 
+// Basically just loads the shader and binds all the uniform variables from GLSL into C++
+// code so they can be easily set
 class StaticShader : public ShaderProgram {
 
 public:

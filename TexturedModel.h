@@ -2,6 +2,7 @@
 #include "RawModel.h"
 #include "ModelTexture.h"
 
+// Holds geometry & an associated texture.
 class TexturedModel {
 public:
   TexturedModel(RawModel model, ModelTexture texture) : _model(model), _texture(texture) {}

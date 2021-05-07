@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
+// Stores a texture & lighting information
+// A ModelTexture is applied to a RawModel to create a TexturedModel
 class ModelTexture {
 public:
 

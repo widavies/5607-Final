@@ -2,6 +2,8 @@
 #include "glad/glad.h"
 #include <SDL.h>
 #include <SDL_opengl.h>
+
+// Stores the geometry of an object
 class RawModel {
 
 public:

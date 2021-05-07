@@ -3,6 +3,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+// A light source
 class Light {
 public:
   Light(glm::vec3 position, glm::vec3 color) : _position(position), _color(color) {
