@@ -103,6 +103,7 @@ void keyE(bool up) {
 
 
 int main(int argc, char* argv[]) {
+    cout << "gets to here";
   DisplayManager dm("Project 4", 1600, 900, false, false);
   ModelLoader modelLoader;
 
