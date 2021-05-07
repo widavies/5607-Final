@@ -8,10 +8,12 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+// A generic shader program.
 class ShaderProgram {
 
 public:
   // Loads and compiles the shader
+  // attrs are the inputs to the vertex shader
   ShaderProgram(std::string vertexShaderPath, std::string fragmentShaderPath, std::string * attrs, int attrCount);
   ~ShaderProgram();
 

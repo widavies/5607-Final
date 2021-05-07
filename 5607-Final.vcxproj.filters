@@ -49,6 +49,12 @@
     <Filter Include="Source Files\entities">
       <UniqueIdentifier>{03d4d2d7-a58b-4234-ba0e-db4ee824fea6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\terrain">
+      <UniqueIdentifier>{395fd7c3-e04c-4837-ab03-4612dd1a8957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\terrain">
+      <UniqueIdentifier>{1386efd0-efbb-4bad-9231-4a261c72223d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -60,7 +66,7 @@
     <ClCompile Include="ModelLoader.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
+    <ClCompile Include="EntityRenderer.cpp">
       <Filter>Source Files\render</Filter>
     </ClCompile>
     <ClCompile Include="ShaderProgram.cpp">
@@ -90,6 +96,21 @@
     <ClCompile Include="OBJLoader.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterRenderer.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainShader.cpp">
+      <Filter>Source Files\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainRenderer.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RawModel.h">
@@ -98,7 +119,7 @@
     <ClInclude Include="ModelLoader.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="EntityRenderer.h">
       <Filter>Header Files\render</Filter>
     </ClInclude>
     <ClInclude Include="ShaderProgram.h">
@@ -134,19 +155,43 @@
     <ClInclude Include="OBJLoader.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterRenderer.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainShader.h">
+      <Filter>Header Files\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainRenderer.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="fragmentShader.txt">
+    <Text Include="entityFragmentShader.txt">
+      <Filter>Resource Files\shaders</Filter>
+    </Text>
+    <Text Include="terrainFragmentShader.txt">
+      <Filter>Resource Files\shaders</Filter>
+    </Text>
+    <Text Include="terrainVertexShader.txt">
       <Filter>Resource Files\shaders</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertexShader.txt">
+    <None Include="entityVertexShader.txt">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\container.jpg">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="textures\grass.jpg">
       <Filter>Resource Files\textures</Filter>
     </Image>
   </ItemGroup>

@@ -3,20 +3,20 @@
 #include "stb_image.h"
 #include <iostream>
 
-RawModel ModelLoader::loadRaw(float* positions, int positionsSize, int * indices, int indicesSize, float * textureCoords, int texturesSize) {
+RawModel ModelLoader::loadRaw(float* positions, int positionsSize, int * indices, int indicesSize, float * textureCoords, int texturesSize, float * normals, int normalsSize) {
   GLuint id = createVAO();
   bindIndexBuffer(indices, indicesSize);
   saveDataAttr(0, 3, positions, positionsSize);
-  if(textureCoords != NULL) {
-    saveDataAttr(1, 2, textureCoords, texturesSize);
-  }
+  saveDataAttr(1, 2, textureCoords, texturesSize);
+  saveDataAttr(2, 3, normals, normalsSize);
+  
   unbindVAO();
 
   return RawModel(id, indicesSize);
 }
 
 // https://learnopengl.com/Getting-started/Textures
-ModelTexture ModelLoader::loadTexture(std::string path) {
+ModelTexture ModelLoader::loadTexture(std::string path, float shineDamper, float reflectivity) {
   GLuint id;
   glGenTextures(1, &id);
   glBindTexture(GL_TEXTURE_2D, id);
@@ -39,7 +39,7 @@ ModelTexture ModelLoader::loadTexture(std::string path) {
 
   _textures.push_back(id);
 
-  return ModelTexture(id);
+  return ModelTexture(id, shineDamper, reflectivity);
 }
 
 void ModelLoader::close() {

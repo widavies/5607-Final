@@ -7,8 +7,10 @@
 #include <SDL_opengl.h>
 #include <map>
 
+// up - true if key lifted, false if key pressed
 typedef void KeyListener(bool up);
 
+// Handles SDL2 management (display, keys, etc.)
 class DisplayManager {
 public:
   /*

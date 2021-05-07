@@ -18,11 +18,12 @@
 #include <string>
 #include "DisplayManager.h"
 #include "ModelLoader.h"
-#include "Renderer.h"
 #include "StaticShader.h"
 #include "ModelTexture.h"
 #include "TexturedModel.h"
 #include "OBJLoader.h"
+#include "MasterRenderer.h"
+#include "RawModel.h"
 
 using namespace std;
 
@@ -105,8 +106,7 @@ int main(int argc, char* argv[]) {
   DisplayManager dm("Project 4", 1600, 900, false, false);
   ModelLoader modelLoader;
 
-  StaticShader* shaders = new StaticShader();
-  Renderer renderer(dm, *shaders);
+  ModelTexture grass = modelLoader.loadTexture("textures/grass.jpg");
 
   Camera camera;
 
@@ -119,13 +119,21 @@ int main(int argc, char* argv[]) {
   dm.AddKeyListener(SDLK_e, keyE);
 
   RawModel square = OBJLoader::loadOBJ("models/VLJ19.obj", modelLoader);
-  ModelTexture texture = modelLoader.loadTexture("models/CIRRUSTS19.jpg");
+  ModelTexture texture = modelLoader.loadTexture("models/CIRRUSTS19.jpg", 10.f, 1.f);
+
+  Terrain terrain1(0, -1, modelLoader, &grass);
+  Terrain terrain2(-1, -1, modelLoader, &grass);
 
   TexturedModel model(square, texture);
+   
 
-  Entity entity(model, 0.f, 0.f, -15.f);
+  Entity entity(&model, 0.f, 0.f, -15.f);
   entity.rotate(0, 3.1415f, 0.0f);
+
+  Light light(glm::vec3(0.f, 5.f, -15.f), glm::vec3(1.f, 1.f, 1.f));
   float pi = 3.1415;
+
+  MasterRenderer* renderer = new MasterRenderer(dm);
 
   while(dm.Update()) {
     //entity.translate(0.f, 0.f, -0.002f);
@@ -170,20 +178,21 @@ int main(int argc, char* argv[]) {
     //cout << camera.getPosition().x << ", " << camera.getPosition().y << ", " << camera.getPosition().z << "  \n";
     //cout << "pitch: " << camera.getPitch() << "\n";
 
-    renderer.prepare();
+    renderer->prepare();
+    //entity.rotate(0.f, 0.02f, 0.f);
+    //camera.move(0.0f, 0.02f, 0.f);
 
-    shaders->start();
-    shaders->setViewMat(camera);
+    renderer->queueEntity(entity);
+    renderer->queueTerrain(terrain1);
+    renderer->queueTerrain(terrain2);
 
-    renderer.render(entity, *shaders);
+    renderer->render(light, camera);
 
-    shaders->stop();
-
-    renderer.flush();
   }
 
   modelLoader.close();
-  delete shaders;
+
+  delete renderer;
 
   return 0;
 }

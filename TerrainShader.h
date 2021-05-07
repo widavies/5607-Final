@@ -6,16 +6,12 @@
 #include "Camera.h"
 #include "Light.h"
 
-// https://stackoverflow.com/a/1372858/4779937
-// An implementation of ShaderProgram. 
-// Basically just loads the shader and binds all the uniform variables from GLSL into C++
-// code so they can be easily set
-class StaticShader : public ShaderProgram {
+class TerrainShader : public ShaderProgram {
 
 public:
-  StaticShader() 
-    : ShaderProgram("entityVertexShader.txt", "entityFragmentShader.txt", 
-      new std::string[]{"position", "textureCoords", "normal"}, 3) {
+  TerrainShader()
+    : ShaderProgram("terrainVertexShader.txt", "terrainFragmentShader.txt",
+      new std::string[]{ "position", "textureCoords", "normal" }, 3) {
 
     _locTransformMat = getUniformLocation("transformationMatrix");
     _locProjectionMat = getUniformLocation("projectionMatrix");
@@ -52,4 +48,6 @@ private:
   GLuint _locReflectivity;
 
 };
+
+
 
