@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "ModelLoader.h"
+#include "TexturedModel.h"
 #include "RawModel.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -12,6 +13,8 @@ class OBJLoader {
 public:
   // path - the location of the '.obj' file
   static RawModel loadOBJ(std::string path, ModelLoader& loader);
+
+  static TexturedModel loadTexturedOBJ(std::string objPath, std::string texturePath, ModelLoader& loader, float reflectivity = 0.f, float shineDamper = 1.f);
 
 private:
   // Takes a str of the form '123/456/689', separates it by '/',

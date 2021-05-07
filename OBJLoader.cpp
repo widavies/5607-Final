@@ -126,3 +126,10 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
 
   return loader.loadRaw(_vertices, vertices.size() * 3, _indices, indices.size(), _textures, vertices.size() * 2, _normals, vertices.size() * 3);
 }
+
+TexturedModel OBJLoader::loadTexturedOBJ(std::string objPath, std::string texturePath, ModelLoader& loader, float reflectivity, float shineDamper) {
+  RawModel rawModel = OBJLoader::loadOBJ(objPath, loader);
+  ModelTexture texture = loader.loadTexture(texturePath, shineDamper, reflectivity);
+
+  return TexturedModel(rawModel, texture);
+}

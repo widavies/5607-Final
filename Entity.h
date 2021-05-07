@@ -55,4 +55,3 @@ private:
   float _rx, _ry, _rz;
   glm::vec3 _scale;
 };
-

@@ -34,35 +34,28 @@ void keyA(bool up) {
 
 int main(int argc, char* argv[]) {
   DisplayManager dm("Project 4", 1600, 900, false, false);
-  ModelLoader modelLoader;
-
-  ModelTexture grass = modelLoader.loadTexture("textures/grass.jpg");
-
-  Camera camera;
-
   // Add key listeners here
   dm.AddKeyListener(SDLK_a, keyA);
 
-  RawModel square = OBJLoader::loadOBJ("models/stall.obj", modelLoader);
-  ModelTexture texture = modelLoader.loadTexture("models/stallTexture.jpg", 10.f, 1.f);
-
-  Terrain terrain1(0, -1, modelLoader, &grass);
-  Terrain terrain2(-1, -1, modelLoader, &grass);
-
-  TexturedModel model(square, texture);
-   
-  Entity entity(&model, 0.f, 0.f, 0.f);
+  ModelLoader modelLoader;
   Light light(glm::vec3(0.f, 5.f, -15.f), glm::vec3(1.f, 1.f, 1.f));
+  Camera camera;
+
+  // Terrain
+  ModelTexture terrainTexture = modelLoader.loadTexture("textures/grass.jpg");
+  Terrain terrain1(0, -1, modelLoader, &terrainTexture);
+  Terrain terrain2(-1, -1, modelLoader, &terrainTexture);
+
+  // Entities
+  TexturedModel grassModel = OBJLoader::loadTexturedOBJ("models/grassModel.obj", "models/grassTexture.jpg", modelLoader);
+  Entity grass1(&grassModel, 0.f, 0.5f, 0.f);
 
   MasterRenderer* renderer = new MasterRenderer(dm);
 
   while(dm.Update()) {
-    //entity.translate(0.f, 0.f, -0.002f);
-    // 
-    entity.rotate(0.f, 0.02f, 0.f);
     camera.move(0.0f, 0.02f, 0.f);
 
-    renderer->queueEntity(entity);
+    renderer->queueEntity(grass1);
     renderer->queueTerrain(terrain1);
     renderer->queueTerrain(terrain2);
 
