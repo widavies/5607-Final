@@ -14,7 +14,7 @@ void MasterRenderer::render(Light& sun, Camera& camera) {
   _terrainShader->setViewMat(camera);
   _terrainRenderer->render(_terrains);
   _terrainShader->stop();
-
+  _skyboxRenderer->render(camera);
   _terrains.clear();
   _entities.clear();
 

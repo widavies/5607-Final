@@ -20,6 +20,15 @@ RawModel ModelLoader::loadRaw(float* positions, int positionsSize, int * indices
   return RawModel(id, indicesSize);
 }
 
+RawModel ModelLoader::loadRaw2D(float* positions, int positionsSize, int dimensions) {
+  GLuint id = createVAO();
+  saveDataAttr(0, dimensions, positions, positionsSize);
+
+  unbindVAO();
+
+  return RawModel(id, positionsSize / dimensions);
+}
+
 // https://learnopengl.com/Getting-started/Textures
 ModelTexture ModelLoader::loadTexture(std::string path, float shineDamper, float reflectivity) {
   GLuint id;
@@ -37,7 +46,7 @@ ModelTexture ModelLoader::loadTexture(std::string path, float shineDamper, float
     if(channels == 3)
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     else if(channels == 4)
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
   } else {
     std::cout << "Failed to load texture: " << path << std::endl;
@@ -48,6 +57,45 @@ ModelTexture ModelLoader::loadTexture(std::string path, float shineDamper, float
   _textures.push_back(id);
 
   return ModelTexture(id, shineDamper, reflectivity);
+}
+
+TextureData ModelLoader::loadTextureData(std::string path, int index) {
+
+  std::cout << "Loading" << path << std::endl;
+
+  int width, height, channels;
+  unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, STBI_rgb_alpha);
+
+  if(data) {
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + index, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    std::cout << "Loaded: " << path << std::endl;
+  } else {
+    std::cout << "Failed to load texture: " << path << std::endl;
+    exit(-1);
+  }
+  
+  stbi_image_free(data);
+
+  return TextureData(0, 0, 0);
+}
+
+GLuint ModelLoader::loadCubeMap(std::vector<std::string>& textureFiles) {
+
+  GLuint id;
+
+  glGenTextures(1, &id);
+
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, id);
+
+  for(int i = 0; i < textureFiles.size(); i++) {
+    loadTextureData(textureFiles[i], i);
+  }
+
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  //_textures.push_back(id);
+  return id;
 }
 
 void ModelLoader::close() {

@@ -1,6 +1,7 @@
 #pragma once
 #include "EntityRenderer.h"
 #include "TerrainRenderer.h"
+#include "SkyboxRenderer.h"
 
 // Orchestrates entity rendering.
 // This renderer will render entities in
@@ -14,7 +15,7 @@ public:
   const float NEAR_PLANE = 0.01f;
   const float FAR_PLANE = 1000.f;
 
-  MasterRenderer(DisplayManager& dm) : _dm(dm) {
+  MasterRenderer(DisplayManager& dm, ModelLoader& loader) : _dm(dm) {
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
 
@@ -23,9 +24,11 @@ public:
 
     _entityShader = new StaticShader;
     _entityRenderer = new EntityRenderer(dm, *_entityShader, proj);
+    _skyboxRenderer = new SkyboxRenderer(loader, proj);
 
     _terrainShader = new TerrainShader;
     _terrainRenderer = new TerrainRenderer(dm, *_terrainShader, proj);
+    
 
   }
   ~MasterRenderer() {
@@ -33,6 +36,7 @@ public:
     delete _entityShader;
     delete _terrainRenderer;
     delete _terrainShader;
+    delete _skyboxRenderer;
   }
   void prepare();
 
@@ -49,12 +53,15 @@ private:
   TerrainShader* _terrainShader;
   EntityRenderer* _entityRenderer;
   TerrainRenderer* _terrainRenderer;
+  SkyboxRenderer* _skyboxRenderer;
 
   // An entity is an instance of a TexturedModel. This keeps track
   // of all the instances of particular TextureModel's
   std::map<TexturedModel*, std::vector<Entity*>> _entities;
 
   std::vector<Terrain*> _terrains;
+
+
 
 };
 

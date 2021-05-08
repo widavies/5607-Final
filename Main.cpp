@@ -39,7 +39,6 @@ float turnSpeed = 0.02;
 
 float cameraPitch = 0;
 
-
 void keyA(bool up) {
     //cout << "Space pressed" << endl;
     if (!up) {
@@ -125,7 +124,7 @@ int main(int argc, char* argv[]) {
   TexturedModel grassModel = OBJLoader::loadTexturedOBJ("models/grassModel.obj", "models/grassTexture.jpg", modelLoader);
   Entity grass1(&grassModel, 0.f, 0.5f, 0.f);
 
-  MasterRenderer* renderer = new MasterRenderer(dm);
+  MasterRenderer* renderer = new MasterRenderer(dm, modelLoader);
 
   RawModel square = OBJLoader::loadOBJ("models/VLJ19.obj", modelLoader);
   ModelTexture texture = modelLoader.loadTexture("models/CIRRUSTS19.jpg");
@@ -175,9 +174,8 @@ int main(int argc, char* argv[]) {
     renderer->queueEntity(grass1);
     renderer->queueTerrain(terrain1);
     renderer->queueTerrain(terrain2);
-
+    
     renderer->render(light, camera);
-
   }
 
   modelLoader.close();

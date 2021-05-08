@@ -24,7 +24,7 @@ RawModel Terrain::generateTerrain(ModelLoader& loader) {
       vp++;
     }
   }
-
+  
   int pointer = 0;
   for(int gz = 0; gz < VERTEX_COUNT - 1; gz++) {
     for(int gx = 0; gx < VERTEX_COUNT - 1; gx++) {

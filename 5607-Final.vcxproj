@@ -168,10 +168,13 @@
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="EntityRenderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="SkyboxRenderer.cpp" />
+    <ClCompile Include="SkyboxShader.cpp" />
     <ClCompile Include="StaticShader.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TerrainRenderer.cpp" />
     <ClCompile Include="TerrainShader.cpp" />
+    <ClCompile Include="TextureData.cpp" />
     <ClCompile Include="TexturedModel.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,15 +191,20 @@
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="EntityRenderer.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="SkyboxRenderer.h" />
+    <ClInclude Include="SkyboxShader.h" />
     <ClInclude Include="StaticShader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TerrainRenderer.h" />
     <ClInclude Include="TerrainShader.h" />
+    <ClInclude Include="TextureData.h" />
     <ClInclude Include="TexturedModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="entityFragmentShader.txt" />
+    <Text Include="skyboxFragmentShader.txt" />
+    <Text Include="skyboxVertexShader.txt" />
     <Text Include="terrainFragmentShader.txt" />
     <Text Include="terrainVertexShader.txt" />
   </ItemGroup>
@@ -207,8 +215,14 @@
     <Image Include="models\CIRRUSTS19.JPG" />
     <Image Include="models\grassTexture.jpg" />
     <Image Include="models\grassTexture.png" />
+    <Image Include="textures\back.png" />
+    <Image Include="textures\bottom.png" />
     <Image Include="textures\container.jpg" />
+    <Image Include="textures\front.png" />
     <Image Include="textures\grass.jpg" />
+    <Image Include="textures\left.png" />
+    <Image Include="textures\right.png" />
+    <Image Include="textures\top.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

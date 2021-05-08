@@ -1,6 +1,7 @@
 #pragma once
 #include "RawModel.h"
 #include "ModelTexture.h"
+#include "TextureData.h"
 #include <vector>
 #include <string>
 
@@ -11,7 +12,13 @@ public:
   // Loads a model from raw vertex positions.
   RawModel loadRaw(float* positions, int positionsSize, int* indices, int indicesSize, float* textureCoords, int texturesSize, float* normals, int normalsSize);
 
+  RawModel loadRaw2D(float* positions, int positionsSize, int dimensions);
+
   ModelTexture loadTexture(std::string path, float shineDamper = 1.f, float reflectivity = 0.f);
+
+  TextureData loadTextureData(std::string path, int index);
+
+  GLuint loadCubeMap(std::vector<std::string>& textureFiles);
 
   void close();
 

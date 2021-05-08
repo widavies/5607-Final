@@ -58,6 +58,12 @@
     <Filter Include="Resource Files\models">
       <UniqueIdentifier>{c8f41478-b7e0-42e4-99b8-1b60d48b8596}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\skybox">
+      <UniqueIdentifier>{12784fa4-c694-4939-98b5-72d95960a216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\skybox">
+      <UniqueIdentifier>{c0063bf3-eb13-48dc-8a5d-570cfed6243f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -112,6 +118,15 @@
       <Filter>Source Files\shaders</Filter>
     </ClCompile>
     <ClCompile Include="TerrainRenderer.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureData.cpp">
+      <Filter>Source Files\render</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyboxShader.cpp">
+      <Filter>Source Files\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyboxRenderer.cpp">
       <Filter>Source Files\render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,6 +188,15 @@
     <ClInclude Include="TerrainRenderer.h">
       <Filter>Header Files\render</Filter>
     </ClInclude>
+    <ClInclude Include="TextureData.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxShader.h">
+      <Filter>Header Files\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxRenderer.h">
+      <Filter>Header Files\render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="entityFragmentShader.txt">
@@ -182,6 +206,12 @@
       <Filter>Resource Files\shaders</Filter>
     </Text>
     <Text Include="terrainVertexShader.txt">
+      <Filter>Resource Files\shaders</Filter>
+    </Text>
+    <Text Include="skyboxFragmentShader.txt">
+      <Filter>Resource Files\shaders</Filter>
+    </Text>
+    <Text Include="skyboxVertexShader.txt">
       <Filter>Resource Files\shaders</Filter>
     </Text>
   </ItemGroup>
@@ -205,6 +235,24 @@
     </Image>
     <Image Include="models\CIRRUSTS19.JPG">
       <Filter>Resource Files\models</Filter>
+    </Image>
+    <Image Include="textures\back.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="textures\bottom.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="textures\front.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="textures\left.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="textures\right.png">
+      <Filter>Resource Files\textures</Filter>
+    </Image>
+    <Image Include="textures\top.png">
+      <Filter>Resource Files\textures</Filter>
     </Image>
   </ItemGroup>
 </Project>

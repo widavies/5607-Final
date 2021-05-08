@@ -58,7 +58,7 @@ public:
 
       _yaw = (3.1415 - (y_rot + angleAroundPlayer));
       //_yaw = angleAroundPlayer;
-      std::cout << angleAroundPlayer << " \n";
+      //std::cout << angleAroundPlayer << " \n";
   }
 
   glm::mat4 getViewMat() {
