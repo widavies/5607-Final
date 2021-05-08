@@ -34,38 +34,13 @@ bool turnright = false;
 bool turnclockwise = false;
 bool turnccw = false;
 
-<<<<<<< HEAD
-float playerSpeed = .01;
-=======
 float playerSpeed = .1;
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
 float turnSpeed = 0.02;
 
 float cameraPitch = 0;
 
 
 void keyA(bool up) {
-<<<<<<< HEAD
-  //cout << "Space pressed" << endl;
-  if (!up) {
-      turnleft = true;
-  }
-  else {
-      turnleft = false;
-  }
-
-}
-
-void keyW(bool up) {
-    //cout << "Space pressed" << endl;
-    if (!up) {
-        turnup = true;
-    }
-    else {
-        turnup = false;
-    }
-}
-=======
     //cout << "Space pressed" << endl;
     if (!up) {
         turnleft = true;
@@ -73,54 +48,9 @@ void keyW(bool up) {
     else {
         turnleft = false;
     }
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
 
-void keyS(bool up) {
-    //cout << "Space pressed" << endl;
-    if (!up) {
-        turndown = true;
-    }
-    else {
-        turndown = false;
-    }
 }
 
-<<<<<<< HEAD
-void keyD(bool up) {
-    //cout << "Space pressed" << endl;
-    if (!up) {
-        turnright = true;
-    }
-    else {
-        turnright = false;
-    }
-}
-
-void keyQ(bool up) {
-    //cout << "Space pressed" << endl;
-    if (!up) {
-        turnccw = true;
-    }
-    else {
-        turnccw = false;
-    }
-}
-
-void keyE(bool up) {
-    //cout << "Space pressed" << endl;
-    if (!up) {
-        turnclockwise = true;
-    }
-    else {
-        turnclockwise = false;
-    }
-}
-
-
-int main(int argc, char* argv[]) {
-  DisplayManager dm("Project 4", 1600, 900, false, false);
-  ModelLoader modelLoader;
-=======
 void keyW(bool up) {
     //cout << "Space pressed" << endl;
     if (!up) {
@@ -130,7 +60,6 @@ void keyW(bool up) {
         turnup = false;
     }
 }
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
 
 void keyS(bool up) {
     //cout << "Space pressed" << endl;
@@ -174,147 +103,86 @@ void keyE(bool up) {
 
 
 int main(int argc, char* argv[]) {
-  DisplayManager dm("Project 4", 1600, 900, false, false);
-  // Add key listeners here
-  dm.AddKeyListener(SDLK_a, keyA);
-  dm.AddKeyListener(SDLK_s, keyS);
-  dm.AddKeyListener(SDLK_d, keyD);
-  dm.AddKeyListener(SDLK_w, keyW);
-  dm.AddKeyListener(SDLK_q, keyQ);
-  dm.AddKeyListener(SDLK_e, keyE);
+    DisplayManager dm("Project 4", 1600, 900, false, false);
+    // Add key listeners here
+    dm.AddKeyListener(SDLK_a, keyA);
+    dm.AddKeyListener(SDLK_s, keyS);
+    dm.AddKeyListener(SDLK_d, keyD);
+    dm.AddKeyListener(SDLK_w, keyW);
+    dm.AddKeyListener(SDLK_q, keyQ);
+    dm.AddKeyListener(SDLK_e, keyE);
 
-<<<<<<< HEAD
-  RawModel square = OBJLoader::loadOBJ("models/VLJ19.obj", modelLoader);
-  ModelTexture texture = modelLoader.loadTexture("models/CIRRUSTS19.jpg", 10.f, 1.f);
-=======
-  ModelLoader modelLoader;
-  Light light(glm::vec3(0.f, 5.f, -15.f), glm::vec3(1.f, 1.f, 1.f));
-  Camera camera;
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
+    ModelLoader modelLoader;
+    Light light(glm::vec3(0.f, 5.f, -15.f), glm::vec3(1.f, 1.f, 1.f));
+    Camera camera;
 
-  // Terrain
-  ModelTexture terrainTexture = modelLoader.loadTexture("textures/grass.jpg");
-  Terrain terrain1(0, -1, modelLoader, &terrainTexture);
-  Terrain terrain2(-1, -1, modelLoader, &terrainTexture);
+    // Terrain
+    ModelTexture terrainTexture = modelLoader.loadTexture("textures/grass.jpg");
+    Terrain terrain1(0, -1, modelLoader, &terrainTexture);
+    Terrain terrain2(-1, -1, modelLoader, &terrainTexture);
 
-<<<<<<< HEAD
-  TexturedModel model(square, texture);
-   
+    // Entities
+    TexturedModel grassModel = OBJLoader::loadTexturedOBJ("models/grassModel.obj", "models/grassTexture.jpg", modelLoader);
+    Entity grass1(&grassModel, 0.f, 0.5f, 0.f);
 
-  Entity entity(&model, 0.f, 0.f, -15.f);
-  entity.rotate(0, 3.1415f, 0.0f);
+    MasterRenderer* renderer = new MasterRenderer(dm);
 
-  Light light(glm::vec3(0.f, 5.f, -15.f), glm::vec3(1.f, 1.f, 1.f));
-  float pi = 3.1415;
-=======
-  // Entities
-  TexturedModel grassModel = OBJLoader::loadTexturedOBJ("models/grassModel.obj", "models/grassTexture.jpg", modelLoader);
-  Entity grass1(&grassModel, 0.f, 0.5f, 0.f);
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
+    RawModel square = OBJLoader::loadOBJ("models/VLJ19.obj", modelLoader);
+    ModelTexture texture = modelLoader.loadTexture("models/CIRRUSTS19.jpg");
 
-  MasterRenderer* renderer = new MasterRenderer(dm);
+    TexturedModel model(square, texture);
 
-  RawModel square = OBJLoader::loadOBJ("models/VLJ19.obj", modelLoader);
-  ModelTexture texture = modelLoader.loadTexture("models/CIRRUSTS19.jpg");
+    Entity entity(&model, 0.f, 0.f, 15.f);
+    entity.rotate(0, 3.1415f, 0.0f);
 
-  TexturedModel model(square, texture);
+    float pi = 3.1415;
 
-  Entity entity(&model, 0.f, 0.f, 15.f);
-  entity.rotate(0, 3.1415f, 0.0f);
+    while (dm.Update()) {
+        if (turnup) {
+            entity.rotate(0.02f, 0.0f, 0.0f);
+        }
+        if (turndown) {
+            entity.rotate(-0.02f, 0.0f, 0.0f);
+        }
+        if (turnleft) {
+            entity.rotate(0.0f, 0.02f, 0.0f);
+        }
+        if (turnright) {
+            entity.rotate(0.0f, -0.02f, 0.0f);
+        }
+        if (turnclockwise) {
+            entity.rotate(0.0f, 0.0f, 0.02f);
+        }
+        if (turnccw) {
+            entity.rotate(0.0f, 0.0f, -0.02f);
+        }
 
-  float pi = 3.1415;
+        entity.translate(playerSpeed * sin(entity.getRotateY()) * cos(entity.getRotateX()), playerSpeed * sin(entity.getRotateX()) * -cos(entity.getRotateY()), playerSpeed * cos(entity.getRotateY()) * cos(entity.getRotateX()));
 
-  while(dm.Update()) {
-<<<<<<< HEAD
-    //entity.translate(0.f, 0.f, -0.002f);
-    // 
-    //entity.rotate(0.f, 0.02f, 0.f);
-    //camera.move(0.0f, 0.f, 0.002f);
+        camera.calculatePitch(dm.mouseYDelta);
+        camera.calculateAngleAroundPlayer(dm.mouseXDelta);
 
-    if (turnup) {
-        entity.rotate(0.02f, 0.0f, 0.0f);
-    }
-    if (turndown) {
-        entity.rotate(-0.02f, 0.0f, 0.0f);
-    }
-    if (turnleft) {
-        entity.rotate(0.0f, 0.02f, 0.0f);
-    }
-    if (turnright) {
-        entity.rotate(0.0f, -0.02f, 0.0f);
-    }
-    if (turnclockwise) {
-        entity.rotate(0.0f, 0.0f, 0.02f);
-    }
-    if (turnccw) {
-        entity.rotate(0.0f, 0.0f, -0.02f);
-    }
+        float horizontalDistance = camera.calculateHorizontalDistance();
+        float verticalDistance = camera.calculateVerticalDistance();
+        glm::vec3 tmp = entity.getPos();
+        camera.calculateCameraPosition(horizontalDistance, verticalDistance, tmp.x, tmp.y, tmp.z, entity.getRotateY());
+        dm.mouseYDelta = 0;
+        dm.mouseXDelta = 0;
 
+        camera.move(0.0f, 0.02f, 0.f);
 
-    entity.translate(playerSpeed * sin(entity.getRotateY()), playerSpeed * sin(entity.getRotateX()), playerSpeed * cos(entity.getRotateY() ));
+        renderer->queueEntity(entity);
+        renderer->queueEntity(grass1);
+        renderer->queueTerrain(terrain1);
+        renderer->queueTerrain(terrain2);
 
+        renderer->render(light, camera);
 
-    camera.calculatePitch(dm.mouseYDelta);
-    camera.calculateAngleAroundPlayer(dm.mouseXDelta);
-    
-=======
-    if(turnup) {
-      entity.rotate(0.02f, 0.0f, 0.0f);
-    }
-    if(turndown) {
-      entity.rotate(-0.02f, 0.0f, 0.0f);
-    }
-    if(turnleft) {
-      entity.rotate(0.0f, 0.02f, 0.0f);
-    }
-    if(turnright) {
-      entity.rotate(0.0f, -0.02f, 0.0f);
-    }
-    if(turnclockwise) {
-      entity.rotate(0.0f, 0.0f, 0.02f);
-    }
-    if(turnccw) {
-      entity.rotate(0.0f, 0.0f, -0.02f);
     }
 
-    entity.translate(playerSpeed * sin(entity.getRotateY()), playerSpeed * sin(entity.getRotateX()), playerSpeed * cos(entity.getRotateY()));
+    modelLoader.close();
 
-    camera.calculatePitch(dm.mouseYDelta);
-    camera.calculateAngleAroundPlayer(dm.mouseXDelta);
+    delete renderer;
 
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
-    float horizontalDistance = camera.calculateHorizontalDistance();
-    float verticalDistance = camera.calculateVerticalDistance();
-    glm::vec3 tmp = entity.getPos();
-    camera.calculateCameraPosition(horizontalDistance, verticalDistance, tmp.x, tmp.y, tmp.z, entity.getRotateY());
-    dm.mouseYDelta = 0;
-    dm.mouseXDelta = 0;
-<<<<<<< HEAD
-    //camera.calculateCameraPosition(verticalDistance, entity.getPos().y);
-
-    //cout << camera.getPosition().x << ", " << camera.getPosition().y << ", " << camera.getPosition().z << "  \n";
-    //cout << "pitch: " << camera.getPitch() << "\n";
-
-    renderer->prepare();
-    //entity.rotate(0.f, 0.02f, 0.f);
-    //camera.move(0.0f, 0.02f, 0.f);
-=======
-
-    camera.move(0.0f, 0.02f, 0.f);
->>>>>>> 8cb70caf8a625d711020630feeeb1521a7e75676
-
-    renderer->queueEntity(entity);
-    renderer->queueEntity(grass1);
-    renderer->queueTerrain(terrain1);
-    renderer->queueTerrain(terrain2);
-
-    renderer->render(light, camera);
-
-  }
-
-  modelLoader.close();
-
-  delete renderer;
-
-  return 0;
+    return 0;
 }
