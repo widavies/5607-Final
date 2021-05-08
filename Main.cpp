@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
         entity.rotate(0.0f, 0.0f, -0.02f);
     }
 
-    entity.translate(playerSpeed * sin(entity.getRotateY()), playerSpeed * sin(entity.getRotateX()), playerSpeed * cos(entity.getRotateY()));
+    //entity.translate(playerSpeed * sin(entity.getRotateY()), playerSpeed * sin(entity.getRotateX()), playerSpeed * cos(entity.getRotateY()));
 
     camera.calculatePitch(dm.mouseYDelta);
     camera.calculateAngleAroundPlayer(dm.mouseXDelta);

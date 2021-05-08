@@ -1,7 +1,9 @@
 #pragma once
+
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include <iostream>
 
 class Camera {
 public:
@@ -55,6 +57,8 @@ public:
       _position.z = z_pos - offsetZ;
 
       _yaw = (3.1415 - (y_rot + angleAroundPlayer));
+      //_yaw = angleAroundPlayer;
+      std::cout << angleAroundPlayer << " \n";
   }
 
   glm::mat4 getViewMat() {
