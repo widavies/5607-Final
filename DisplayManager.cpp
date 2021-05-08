@@ -11,7 +11,7 @@ DisplayManager::DisplayManager(const std::string& title, int width, int height, 
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
-  Uint32 flags = SDL_WINDOW_OPENGL | (SDL_WINDOW_FULLSCREEN_DESKTOP * fullscreen) | (SDL_WINDOW_RESIZABLE * resizable);
+  Uint32 flags = SDL_WINDOW_OPENGL | (SDL_WINDOW_FULLSCREEN * fullscreen) | (SDL_WINDOW_RESIZABLE * resizable);
   _window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
   _context = SDL_GL_CreateContext(_window);
   
@@ -50,7 +50,6 @@ bool DisplayManager::Update() {
         it->second(windowEvent.type == SDL_KEYUP);
       }
     }
-
 
     if(windowEvent.type == SDL_MOUSEMOTION) {
       mouseXDelta = windowEvent.motion.xrel;

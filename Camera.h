@@ -30,35 +30,35 @@ public:
   }
 
   void calculatePitch(int yDelta) {
-      _pitch -= yDelta * sensitivity;
+    _pitch += yDelta * sensitivity;
   }
 
   void calculateAngleAroundPlayer(int xDelta) {
-      angleAroundPlayer -= xDelta * sensitivity;
+    angleAroundPlayer -= xDelta * sensitivity;
 
   }
 
   float calculateHorizontalDistance() {
-      return (float)(distanceFromPlayer * cos(_pitch));
+    return (float)(distanceFromPlayer * cos(_pitch));
   }
 
   float calculateVerticalDistance() {
-      return (float)(distanceFromPlayer * sin(_pitch));
+    return (float)(distanceFromPlayer * sin(_pitch));
   }
 
 
   void calculateCameraPosition(float horizDistance, float verticDistance, float x_pos, float y_pos, float z_pos, float y_rot) {
-      _position.y = y_pos + verticDistance;
+    _position.y = y_pos + verticDistance;
 
-      float theta = y_rot + angleAroundPlayer;
-      float offsetX = horizDistance * sin(theta);
-      float offsetZ = horizDistance * cos(theta);
-      _position.x = x_pos - offsetX;
-      _position.z = z_pos - offsetZ;
+    float theta = y_rot + angleAroundPlayer;
+    float offsetX = horizDistance * sin(theta);
+    float offsetZ = horizDistance * cos(theta);
+    _position.x = x_pos - offsetX;
+    _position.z = z_pos - offsetZ;
 
-      _yaw = (3.1415 - (y_rot + angleAroundPlayer));
-      //_yaw = angleAroundPlayer;
-      //std::cout << angleAroundPlayer << " \n";
+    _yaw = (3.1415 - (y_rot + angleAroundPlayer));
+    //_yaw = angleAroundPlayer;
+    //std::cout << angleAroundPlayer << " \n";
   }
 
   glm::mat4 getViewMat() {
@@ -82,4 +82,3 @@ private:
   float distanceFromPlayer = 15;
   float sensitivity = .02;
 };
-

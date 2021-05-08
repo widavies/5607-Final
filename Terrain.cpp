@@ -1,6 +1,8 @@
 #include "Terrain.h"
 
 RawModel Terrain::generateTerrain(ModelLoader& loader) {
+ 
+
   const int count = VERTEX_COUNT * VERTEX_COUNT;
 
   float * vertices = new float[count * 3];
