@@ -203,5 +203,8 @@
     <Image Include="models\grassTexture.jpg">
       <Filter>Resource Files\models</Filter>
     </Image>
+    <Image Include="models\CIRRUSTS19.JPG">
+      <Filter>Resource Files\models</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -31,9 +31,5 @@ void main(void) {
 
 	vec4 textureColor = texture(textureSampler, pass_textureCoords);
 
-	if(textureColor.r >0.85  && textureColor.g > 0.85 && textureColor.b > 0.85) {
-		discard;
-	}
-
 	out_Color = vec4(diffuse, 1.0) * textureColor + vec4(finalSpecular, 1.0);
 }

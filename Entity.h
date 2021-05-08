@@ -41,6 +41,20 @@ public:
     return _model;
   }
 
+  float getRotateX() {
+      return _rx;
+  }
+  float getRotateY() {
+      return _ry;
+  }
+  float getRotateZ() {
+      return _rx;
+  }
+
+  glm::vec3 getPos() {
+      return _position;
+  }
+
   ModelTexture& getTexture() {
     return _model->getTexture();
   }
