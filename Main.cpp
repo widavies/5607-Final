@@ -34,7 +34,7 @@ bool turnright = false;
 bool turnclockwise = false;
 bool turnccw = false;
 
-float playerSpeed = .1;
+float playerSpeed = .3;
 float turnSpeed = 0.02;
 
 float cameraPitch = 0;
@@ -121,7 +121,28 @@ int main(int argc, char* argv[]) {
     Terrain terrain1(0, -1, modelLoader, &terrainTexture);
     Terrain terrain2(-1, -1, modelLoader, &terrainTexture);
 
+    // Hills/Mountains
+    TexturedModel mountainsModel = OBJLoader::loadTexturedOBJ("models/Rock_1.obj", "models/mountainText_1.jpg", modelLoader);
+    //Entity boulders[numB];
+    
+    std::vector<Entity> boulders;
+
+    Entity mountains1(&mountainsModel, 400.f, 5.f, 20.f);
+
+    for (int i = 0; i < 80; i++) {
+       Entity tmp(&mountainsModel, (rand() % 600) - 200, (rand() % 3) + 2, -(rand() % 300 + 50));
+       tmp.scale((rand() % 20) + 3, (rand() % 20) + 3, (rand() % 20) + 3);
+       tmp.rotate((rand() % 3), (rand() % 3), (rand() % 3));
+       boulders.push_back(tmp);
+    }
+
+    Entity mountains2(&mountainsModel, 400.f, 5.f, 20.f);
+    mountains1.scale(3, 3, 3);
+
+    /*RawModel mountainModel2 = OBJLoader::loadOBJ("models/mountains_1.obj", modelLoader);
+    Entity mountainRaw (&mountainModel2, 0.f, 0.f, 0.f);*/
     // Entities
+    
     TexturedModel grassModel = OBJLoader::loadTexturedOBJ("models/grassModel.obj", "models/grassTexture.jpg", modelLoader);
     Entity grass1(&grassModel, 0.f, 0.5f, 0.f);
 
@@ -171,10 +192,14 @@ int main(int argc, char* argv[]) {
 
         camera.move(0.0f, 0.02f, 0.f);
 
+        for (auto i = boulders.begin(); i != boulders.end(); ++i) {
+            renderer->queueEntity(*i);
+        }
         renderer->queueEntity(entity);
         renderer->queueEntity(grass1);
         renderer->queueTerrain(terrain1);
         renderer->queueTerrain(terrain2);
+        renderer->queueEntity(mountains1);
 
         renderer->render(light, camera);
 

@@ -37,6 +37,10 @@ public:
         _rz += rz;
     }
 
+    void scale(float xscale, float yscale, float zscale) {
+        _scale = glm::vec3(xscale, yscale, zscale);
+    }
+
     TexturedModel* getModel() {
         return _model;
     }

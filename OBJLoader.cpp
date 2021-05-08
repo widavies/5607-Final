@@ -60,6 +60,7 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
 
   float x, y, z;
 
+  int index = 0;
   while(true) {
     file >> op;
 
@@ -85,6 +86,10 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
       _normals = new float[vertices.size() * 3];
       break;
     }
+    if (index % 100000 == 0) {
+        std::cout << index << "\n";
+    }
+    index++;
   }
 
   std::string token;
