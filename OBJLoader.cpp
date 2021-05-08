@@ -25,7 +25,7 @@ void OBJLoader::parseFace(int* vals, std::vector<int>& indices, std::vector<glm:
   std::vector<glm::vec3> normals, float* _textures, float* _normals) {
 
   int currentVertexPointer = vals[0] - 1;
-  indices.push_back(currentVertexPointer);
+  indices.push_back(currentVertexPointer); 
   glm::vec2 currentTex = textures[vals[1] - 1];
   _textures[currentVertexPointer * 2] = currentTex.x;
   _textures[currentVertexPointer * 2 + 1] = 1 - currentTex.y;
@@ -107,6 +107,11 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
     if(!(file >> op)) {
       break;
     }
+
+    if(op == "s") {
+      file >> op;
+      file >> op;
+    }
   }
 
   _vertices = new float[vertices.size() * 3];
@@ -125,4 +130,11 @@ RawModel OBJLoader::loadOBJ(std::string path, ModelLoader& loader) {
   }
 
   return loader.loadRaw(_vertices, vertices.size() * 3, _indices, indices.size(), _textures, vertices.size() * 2, _normals, vertices.size() * 3);
+}
+
+TexturedModel OBJLoader::loadTexturedOBJ(std::string objPath, std::string texturePath, ModelLoader& loader, float reflectivity, float shineDamper) {
+  RawModel rawModel = OBJLoader::loadOBJ(objPath, loader);
+  ModelTexture texture = loader.loadTexture(texturePath, shineDamper, reflectivity);
+
+  return TexturedModel(rawModel, texture);
 }

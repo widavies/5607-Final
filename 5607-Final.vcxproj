@@ -204,6 +204,9 @@
     <None Include="entityVertexShader.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="models\CIRRUSTS19.JPG" />
+    <Image Include="models\grassTexture.jpg" />
+    <Image Include="models\grassTexture.png" />
     <Image Include="textures\container.jpg" />
     <Image Include="textures\grass.jpg" />
   </ItemGroup>

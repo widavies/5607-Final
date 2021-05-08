@@ -51,8 +51,6 @@ bool DisplayManager::Update() {
       }
     }
 
-
-
     if(windowEvent.type == SDL_MOUSEMOTION) {
       mouseXDelta = windowEvent.motion.xrel;
       mouseYDelta = windowEvent.motion.yrel;
